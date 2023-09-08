@@ -37,7 +37,8 @@ export default function Toast({ toast }) {
   return (
     <div
       ref={ref}
-      className={`fixed right-0 bottom-0 m-4 p-4 rounded transition-opacity opacity-0 ${
+      role="alert"
+      className={`m-4 p-4 rounded transition-opacity opacity-0 ${
         colorMap[toast.type]
       }`}
     >
