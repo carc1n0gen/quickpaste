@@ -96,7 +96,7 @@ export default async function Home({
           <option value="6">delete after 6 days</option>
           <option value="7">delete after 7 days</option>
         </select>
-        <button className="flex ml-auto bg-blue-500 text-white border border-blue-400 rounded-md px-6 py-2 hover:bg-blue-700">
+        <button className="flex ml-auto bg-blue-500 text-white border border-blue-400 rounded-md px-8 py-2 hover:bg-blue-700">
           Save
         </button>
       </div>
