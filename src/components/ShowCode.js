@@ -1,13 +1,13 @@
 "use client";
 
-import { useCallback, useContext, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import useToast from "@/components/hooks/useToast";
+import useToasts from "@/components/hooks/useToasts";
 
 export default function ShowCode({ id, rawCode, highlightedCode, lang }) {
   const router = useRouter();
-  const { addToast } = useToast();
+  const { addToast } = useToasts();
 
   const lineIds = useMemo(() => {
     return rawCode

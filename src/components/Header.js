@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { useCallback, useMemo } from "react";
 import { useParams, useSearchParams } from "next/navigation";
-import useToast from "@/components/hooks/useToast";
+import useToasts from "@/components/hooks/useToasts";
 
 export default function Header() {
   const params = useParams();
   const searchParams = useSearchParams();
-  const { addToast } = useToast();
+  const { addToast } = useToasts();
 
   const title = useMemo(() => {
     return params.id
