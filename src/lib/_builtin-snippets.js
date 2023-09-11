@@ -27,7 +27,7 @@ shared a link with you pre-highlighted) will not work.
 
 **CLI Script**
 
-[Here is a cli script for creating pastes from the command line.](https://quickpaste.net/cli.mjs)
+[Here is a cli script for creating pastes from the command line.](https://quickpaste.net/cli?lang="mjs)
 
 ## FAQ
 
