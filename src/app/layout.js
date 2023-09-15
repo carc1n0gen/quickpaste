@@ -1,9 +1,9 @@
-import GoogleAnalytics from "@/components/GoogleAnalytics";
-import "./globals.css";
-
 import Header from "@/components/Header";
 import ToastList from "@/components/ToastList";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { AppProvider } from "@/components/contexts/AppContext";
+
+import "./globals.css";
 
 export const metadata = {
   title: "Quickpaste - dead simple code snippet sharing",
