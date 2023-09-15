@@ -1,3 +1,4 @@
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "./globals.css";
 
 import Header from "@/components/Header";
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
           <Header />
           {children}
           <ToastList />
+          <GoogleAnalytics />
         </body>
       </html>
     </AppProvider>
