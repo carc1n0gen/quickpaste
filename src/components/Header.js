@@ -21,7 +21,7 @@ export default function Header() {
   const onClick = useCallback(async () => {
     await navigator.clipboard.writeText(location);
     addToast({
-      message: "Linked copied to clipboard!",
+      message: "Link copied to clipboard!",
       type: "success",
       autoRemoveAfter: 5000,
     });
