@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { savePaste, getPaste } from "@/lib/pastes";
 import { NextResponse } from "next/server";
+import { getBaseUrl } from "@/lib/functions";
 
 function validateReq(fn) {
   return async function (req) {
@@ -28,8 +29,6 @@ function validateReq(fn) {
 
 export const POST = validateReq(
   async (req, { errors, data: { id, text, lang, deleteAfterDays } }) => {
-    const url = new URL(req.url);
-
     if (errors.length) {
       return NextResponse.json(
         { url, errors },
@@ -58,15 +57,16 @@ export const POST = validateReq(
     }
 
     const { upsertedId } = await savePaste(codeDocument);
+    const baseUrl = getBaseUrl(req);
 
     if (req.headers.get("Accept") === "text/plain") {
       return new Response(
-        `${url.origin}/${upsertedId}${lang ? `?lang=${lang}` : ""}`
+        `${baseUrl}/${upsertedId}${lang ? `?lang=${lang}` : ""}`
       );
     }
 
     return Response.redirect(
-      `${url.origin}/${upsertedId}${lang ? `?lang=${lang}` : ""}`
+      `${baseUrl}/${upsertedId}${lang ? `?lang=${lang}` : ""}`
     );
   }
 );
