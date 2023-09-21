@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useMemo } from "react";
 import { useParams, useSearchParams } from "next/navigation";
+import { useCallback, useMemo } from "react";
+
 import useToasts from "@/components/hooks/useToasts";
 
 export default function Header() {

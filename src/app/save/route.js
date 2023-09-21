@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
-import { savePaste, getPaste } from "@/lib/pastes";
 import { NextResponse } from "next/server";
+
 import { getBaseUrl } from "@/lib/functions";
+import { getPaste, savePaste } from "@/lib/pastes";
 
 function validateReq(fn) {
   return async function (req) {

@@ -1,6 +1,6 @@
+import * as snippets from "./_builtin-snippets";
 import { makeId } from "./ids";
 import { getCollection } from "./mongodb";
-import * as snippets from "./_builtin-snippets";
 
 export async function savePaste(updates) {
   const pastes = await getCollection("pastes");

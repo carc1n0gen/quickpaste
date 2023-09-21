@@ -1,6 +1,6 @@
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import Header from "@/components/Header";
 import ToastList from "@/components/ToastList";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { AppProvider } from "@/components/contexts/AppContext";
 
 import "./globals.css";

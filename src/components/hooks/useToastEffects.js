@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import useToasts from "./useToasts";
 
 export default function useToastEffects(ref, toast) {

@@ -1,5 +1,6 @@
-import ShowCode from "@/components/ShowCode";
 import hljs from "highlight.js";
+
+import ShowCode from "@/components/ShowCode";
 
 const notFoundText = `# Not Found
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+
 import useToastEffects from "./hooks/useToastEffects";
 
 const bgMap = {
