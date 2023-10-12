@@ -13,7 +13,7 @@ export default function RootLayout({ children }) {
   return (
     <AppProvider>
       <html lang="en">
-        <link rel="icon" href="/icon.png" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <body className="bg-zinc-700 edit-height-fix">
           <Header />
           {children}
