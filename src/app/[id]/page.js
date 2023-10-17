@@ -9,6 +9,18 @@ export async function generateMetadata({ params, searchParams }) {
     title: `${params.id}${
       searchParams.lang ? `.${searchParams.lang}` : ""
     } - Quickpaste`,
+    openGraph: {
+      title: "Quickpaste",
+      description:
+        "Dead simple code sharing.  Paste some code, save, and share the generated link with a friend.",
+      url: `/${params.id}`,
+      type: "website",
+      images: [
+        {
+          url: `/${params.id}/og-image`,
+        },
+      ],
+    },
   };
 }
 
