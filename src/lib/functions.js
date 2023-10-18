@@ -1,8 +1,3 @@
-export function getBaseUrl(request) {
-  if (process.env.REVERSE_PROXY) {
-    return request.headers.get("origin");
-  }
-
-  const url = new URL(request.url);
-  return url.origin;
+export function getBaseUrl() {
+  return process.env.BASE_URL || `http://127.0.0.1:${process.env.PORT}`;
 }

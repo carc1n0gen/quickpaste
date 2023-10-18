@@ -13,8 +13,8 @@ export async function generateMetadata({ params, searchParams }) {
       title: "Quickpaste",
       description:
         "Dead simple code sharing.  Paste some code, save, and share the generated link with a friend.",
-      url: `/${params.id}`,
       type: "website",
+      url: `/${params.id}`,
       images: [
         {
           url: `/${params.id}/og-image`,
