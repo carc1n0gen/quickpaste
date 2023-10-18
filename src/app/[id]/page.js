@@ -4,20 +4,21 @@ import { notFound } from "next/navigation";
 import ShowCode from "@/components/ShowCode";
 import { getPaste } from "@/lib/pastes";
 
-export async function generateMetadata({ params, searchParams }) {
+export async function generateMetadata({
+  params: { id },
+  searchParams: { lang },
+}) {
   return {
-    title: `${params.id}${
-      searchParams.lang ? `.${searchParams.lang}` : ""
-    } - Quickpaste`,
+    title: `${id}${lang ? `.${lang}` : ""} - Quickpaste`,
     openGraph: {
       title: "Quickpaste",
       description:
         "Dead simple code sharing.  Paste some code, save, and share the generated link with a friend.",
       type: "website",
-      url: `/${params.id}`,
+      url: `/${id}${lang ? `?lang=${lang}` : ""}`,
       images: [
         {
-          url: `/${params.id}/og-image`,
+          url: `/${id}/og-image${lang ? `?lang=${lang}` : ""}`,
         },
       ],
     },
