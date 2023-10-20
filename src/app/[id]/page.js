@@ -19,7 +19,7 @@ export async function generateMetadata({
       images: [
         {
           // url: `/${id}/og-image${lang ? `?lang=${lang}` : ""}`,
-          url: `/generated/${id}.jpg`,
+          url: `/generated/${id}.png`,
         },
       ],
     },
