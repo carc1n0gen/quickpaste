@@ -1,4 +1,4 @@
-import { getPaste } from "@/lib/pastes";
+import { getPaste } from "#lib/pastes";
 
 const languages = {
   ada: "Ada",

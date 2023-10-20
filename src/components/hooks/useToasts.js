@@ -1,6 +1,6 @@
 import { useCallback, useContext } from "react";
 
-import { AppContext } from "@/components/contexts/AppContext";
+import { AppContext } from "#components/contexts/AppContext";
 
 export default function useToasts() {
   const { toasts, setToasts } = useContext(AppContext);

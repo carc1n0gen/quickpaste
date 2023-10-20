@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
 import { useCallback, useMemo } from "react";
 
-import useToasts from "@/components/hooks/useToasts";
+import useToasts from "#components/hooks/useToasts";
 
 export default function Header() {
   const params = useParams();

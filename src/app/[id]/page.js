@@ -1,8 +1,8 @@
 import hljs from "highlight.js";
 import { notFound } from "next/navigation";
 
-import ShowCode from "@/components/ShowCode";
-import { getPaste } from "@/lib/pastes";
+import ShowCode from "#components/ShowCode";
+import { getPaste } from "#lib/pastes";
 
 export async function generateMetadata({
   params: { id },

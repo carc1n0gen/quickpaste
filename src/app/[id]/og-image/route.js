@@ -3,7 +3,7 @@ import hljs from "highlight.js";
 import { notFound } from "next/navigation";
 import nodeHtmlToImage from "node-html-to-image";
 
-import { getPaste } from "@/lib/pastes";
+import { getPaste } from "#lib/pastes";
 
 export async function GET(request, { params: { id } }) {
   const searchParams = request.nextUrl.searchParams;

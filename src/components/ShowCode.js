@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
 
-import useToasts from "@/components/hooks/useToasts";
+import useToasts from "#components/hooks/useToasts";
 
 export default function ShowCode({ id, rawCode, highlightedCode, lang }) {
   const router = useRouter();

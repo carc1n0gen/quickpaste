@@ -1,8 +1,8 @@
-import GoogleAnalytics from "@/components/GoogleAnalytics";
-import Header from "@/components/Header";
-import ToastList from "@/components/ToastList";
-import { AppProvider } from "@/components/contexts/AppContext";
-import { getBaseUrl } from "@/lib/functions";
+import GoogleAnalytics from "#components/GoogleAnalytics";
+import Header from "#components/Header";
+import ToastList from "#components/ToastList";
+import { AppProvider } from "#components/contexts/AppContext";
+import { getBaseUrl } from "#lib/functions";
 
 import "./globals.css";
 

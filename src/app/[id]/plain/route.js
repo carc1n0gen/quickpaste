@@ -1,4 +1,4 @@
-import { getPaste } from "@/lib/pastes";
+import { getPaste } from "#lib/pastes";
 
 export async function GET(req, { params }) {
   const result = await getPaste(params.id);
