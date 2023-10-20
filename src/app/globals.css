@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '~highlight.js/styles/rainbow.css';
+@import "~highlight.js/styles/rainbow.css";
 
 .hljs {
-  background: transparent;
+  background: transparent !important;
 }
 
 pre code.hljs {
@@ -28,7 +28,7 @@ pre code.hljs {
 
 .line:before {
   position: absolute;
-  content: '';
+  content: "";
   top: 0;
   right: 0;
   bottom: 0;
@@ -37,12 +37,13 @@ pre code.hljs {
   cursor: pointer;
 }
 
-.line.highlighted:after, .line:target:after {
+.line.highlighted:after,
+.line:target:after {
   position: absolute;
   left: -22px;
-  content: '';
+  content: "";
   width: 110vw;
   height: 100%;
-  background-color: rgba(255,255,255,.15);
+  background-color: rgba(255, 255, 255, 0.15);
   pointer-events: none;
 }

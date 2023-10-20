@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { NextResponse } from "next/server";
 
 import { getBaseUrl } from "@/lib/functions";
-import { getPaste, savePaste } from "@/lib/pastes";
+import { generateImage, getPaste, savePaste } from "@/lib/pastes";
 
 function validateReq(fn) {
   return async function (req) {
@@ -58,7 +58,11 @@ export const POST = validateReq(
     }
 
     const { upsertedId } = await savePaste(codeDocument);
-    const baseUrl = getBaseUrl(req);
+
+    // intentionally dont wait for this to complete
+    generateImage(upsertedId, text, lang);
+
+    const baseUrl = getBaseUrl();
 
     if (req.headers.get("Accept") === "text/plain") {
       return new Response(
