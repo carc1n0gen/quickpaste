@@ -1,0 +1,43 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<textarea id="raw" aria-hidden="true" tabindex="-1" style="position:absolute;left:-10000px;">{{ text_raw }}</textarea>
+<div class="hidden md:flex bg-zinc-700 text-zinc-200 p-2 pb-2.5 border-b border-b-zinc-600">
+    {% if seconds_left %}
+    {% set days_left = (seconds_left / 86400) | round(method='ceil') | int %}
+    {% set hours_left = (seconds_left / 3600) | round(method='ceil') | int %}
+    <div class="mr-4">
+        {% if days_left > 1 %}
+            <span>this paste will be deleted in {{ days_left }} days.</span>
+        {% elif hours_left > 1 %}
+            <span>this paste will be deleted in {{ hours_left }} hours.</span>
+        {% else %}
+            <span>this paste will be deleted within the hour.</span>
+        {% endif %}
+        <span class="controls-divider"></span>
+    </div>
+    {% endif %}
+    <a href="{{ url_for('paste.download', id=id, extension=extension) }}" class="underline">download</a>
+    <a href="{{ url_for('paste.raw', id=id, extension=extension) }}" class="ml-4 underline">view raw</a>
+    <button type="button" class="ml-4 underline" id="copy">copy text</button>
+    {% if id in session.get('created_ids', []) %}
+    <a href="{{ url_for('paste.edit', edit=id, lang=extension) }}" class="ml-4 underline">edit</a>
+    {% endif %}
+    <a href="{{ url_for('paste.edit', clone=id, lang=extension) }}" class="ml-4 underline">clone &amp; edit</a>
+    {% if id in session.get('created_ids', []) %}
+    <form action="{{ url_for('paste.delete', id=id) }}" method="POST" class="inline">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <button type="submit" class="ml-4 underline cursor-pointer">delete</button>
+    </form>
+    {% endif %}
+</div>
+<div class="flex flex-auto bg-zinc-700 text-zinc-200 overflow-x-hidden">
+    <div class="text-right pr-2 text-zinc-400 border-r border-r-zinc-600 py-2 px-3">
+        {% for line in range(1, lines + 1) %}
+            <a id="{{ line }}" href="#{{ line }}" title="link to line {{ line }}" class="relative target:after:absolute target:after:left-[-22px] target:after:content-[''] target:after:w-[110vw] target:after:h-full target:after:bg-white/15 target:after:pointer-events-none">{{ line }}</a><br>
+        {% endfor %}
+    </div>
+    <div class="m-2 overflow-x-auto">
+        {{ text | safe }}
+    </div>
+</div>
+{% endblock %}

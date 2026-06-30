@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="{{ url_for('static', filename='img/icon.png') }}">
+        <meta name="Description" content="Dead simple code sharing.  Paste some code, save, and share the generated link with a friend.">
+        <meta name="keywords" content="quickpaste, code, pastebin, paste, bin, share, sharing, snippet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css', cache_buster=cache_buster) }}">
+    </head>
+    <body class="bg-zinc-700 min-h-screen flex flex-col">
+        <header class="flex flex-col md:flex-row items-center bg-zinc-800 text-zinc-200 p-4 border-b border-b-zinc-600">
+            <a href="{{ title_link }}" class="md:-mt-2 mb-8 md:mb-0 underline decoration-blue-500 text-4xl font-bold text-center md:text-left"><h1>quickpaste</h1></a>
+            <nav class="ml-auto mr-auto mb-4 md:mb-0 md:mr-0 text-xl">
+                <a href="/about.md">About</a>
+                <a href="https://github.com/carc1n0gen/quickpaste" target="_blank" class="ml-7">Github</a>
+                {% if id is defined %}
+                <a href="/" class="ml-7 bg-blue-500 text-white border border-blue-400 rounded-md px-4 hover:bg-blue-700">New Paste</a>
+                {% endif %}
+            </nav>
+        </header>
+        {% block content %}{% endblock %}
+        {% include 'partials/alerts.html' %}
+    </body>
+</html>
