@@ -1,6 +1,6 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
-<textarea id="raw" aria-hidden="true" tabindex="-1" style="position:absolute;left:-10000px;">{{ text_raw }}</textarea>
+<div id="raw" aria-hidden="true" style="display: none">{{ text_raw }}</div>
 <div class="hidden md:flex bg-zinc-700 text-zinc-200 p-2 pb-2.5 border-b border-b-zinc-600">
     {% if seconds_left %}
     {% set days_left = (seconds_left / 86400) | round(method='ceil') | int %}
@@ -40,4 +40,22 @@
         {{ text | safe }}
     </div>
 </div>
+{% endblock %}
+
+{% block bottom_scripts %}
+<script>
+(() => {
+  const raw = document.getElementById('raw');
+  const copyButton = document.getElementById('copy');
+  copyButton.addEventListener('click', async (e) => {
+    try {
+      // Note: navigator requires https or localhost to work
+      await navigator.clipboard.writeText(raw.textContent);
+      pushAlert('Copied to clipboard!', 'success');
+    } catch (err) {
+        console.error('Failed to copy to clipboard: ', err);
+    }
+  });
+})();
+</script>
 {% endblock %}
