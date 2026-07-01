@@ -2,7 +2,7 @@ import os
 import tomllib
 import uuid
 
-from flask import Flask
+from flask import Flask, g
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_wtf.csrf import CSRFProtect
@@ -31,6 +31,12 @@ def create_app():
     create_cli(app)
     create_routes(app)
     create_handlers(app)
+
+    @app.after_request
+    def after_request_func(response):
+        if "csrf_token" in g:
+            response.headers["CSRF_TOKEN"] = g.csrf_token
+        return response
 
     @app.context_processor
     def inject_globals():
