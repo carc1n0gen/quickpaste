@@ -5,6 +5,7 @@ LOG_LEVEL = "INFO"
 MONGO_URI = "mongodb://localhost:27017/quickpaste"
 
 RATELIMIT_DEFAULT = "2 per second"
+RATELIMIT_STORAGE_URI = "memory://"
 
 PASTE_MAX_LENGTH = 10240
 PASTE_ID_LENGTH = 7
