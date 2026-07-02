@@ -51,6 +51,7 @@
             <span aria-hidden="true">×</span>
         </button>
         <ul id="alert-list"></ul>
+    </div>
 </template>
 <script>
 (function() {
@@ -81,11 +82,11 @@
     });
   }
 
-  window.addEventListener('load', function () {
+  window.addEventListener('load', () => {
     doAlerts();
   });
 
-  window.pushAlert = function(message, category) {
+  window.pushAlert = (message, category) =>{
     const alertTemplate = document.getElementById('alert-template');
     const alertClone = alertTemplate.content.cloneNode(true);
 
@@ -93,9 +94,9 @@
     alertRoot.classList.add(`alert-${category}`);
 
     const alertList = alertClone.querySelector('#alert-list');
-    const allertMessage = document.createElement('li');
-    allertMessage.textContent = message;
-    alertList.appendChild(allertMessage);
+    const alertMessage = document.createElement('li');
+    alertMessage.textContent = message;
+    alertList.appendChild(alertMessage);
     document.body.appendChild(alertClone);
 
     setTimeout(() => doAlerts());

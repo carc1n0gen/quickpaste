@@ -51,7 +51,7 @@
     try {
       // Note: navigator requires https or localhost to work
       await navigator.clipboard.writeText(raw.textContent);
-      pushAlert('Copied to clipboard!', 'success');
+      pushAlert('Text copied to clipboard', 'success');
     } catch (err) {
         console.error('Failed to copy to clipboard: ', err);
     }
