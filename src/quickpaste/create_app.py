@@ -1,6 +1,7 @@
 import os
 import tomllib
 import uuid
+from functools import lru_cache
 
 from flask import Flask, g
 from flask_limiter import Limiter
@@ -39,6 +40,7 @@ def create_app():
         return response
 
     @app.context_processor
+    @lru_cache()
     def inject_globals():
         return dict(cache_buster=uuid.uuid4())
 

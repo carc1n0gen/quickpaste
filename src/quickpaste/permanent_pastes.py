@@ -12,22 +12,17 @@ override the language, just add or edit a file extension to the url.
 **Line highlighting**
 
 Click on a line number to highlight and target the line with the # part of the
-URL. Control+Click (Command+Click on mac) a line to highlight it without
-targeting it (This can be done to as many lines as you like).  Click on a
-highlighted line to un-highlight it.
+URL.
 
 **Does not totally break without JavaScript**
 
 No JavaScript is required to use the basic features of pasting code, saving it,
-copying the link to share or targeting lines. But Shift-Clicking to highlight
-lines without targeting, and un-highlighting lines (for example if someone
-shared a link with you pre-highlighted) will not work.
+copying the link to share or highlighting lines. But alerts won't be dismissable
+or fade away.
 
 **CLI Script**
 
-[Here is a cli script for creating pastes from the command line.](https://quickpaste.net/cli.py)
-
-Note: only python 3.8 is tested.
+Here is a cli [script](https://quickpaste.net/cli.py) for creating pastes from the command line.
 
 Just download it, rename it to `quickpaste`, mark it as executable, and put it somewhere in the path.
 
