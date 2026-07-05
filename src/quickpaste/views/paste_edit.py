@@ -44,7 +44,7 @@ def get(form):
         form.extension.data = lang
         form.id.data = edit_id if edit_id else None
 
-    return render_template("paste_edit.html", form=form, title_link=request.url)
+    return render_template("paste_edit.html", form=form, title="quickpaste", title_link=request.url)
 
 
 def post(form):
