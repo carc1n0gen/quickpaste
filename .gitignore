@@ -101,21 +101,11 @@ ENV/
 .mypy_cache/
 
 # config
-config.py
-config.json
-
-# SQLite
-*.db
-*.sqlite
-
-# vscode
-/.vscode
+quickpaste.toml
 
 # Compiled Assets
-/app/static/*
-
-# macOS Shit (I thought these werre gone in sierra and above?
-.DS_Store
-
-# ndoejs shit
 node_modules/
+/src/quickpaste/static/styles.css
+
+# macOS :(
+.DS_Store

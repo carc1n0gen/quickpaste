@@ -1,0 +1,115 @@
+<div id="alerts">
+{% if form is defined and form.errors %}
+    <div class="alert alert-warning alert-autohide fade-in" id="error-messages">
+        <button class="alert-close" type="button" data-target="#error-messages">
+            <span class="sr-only">close alert</span>
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <ul>
+        {% for field, errors in form.errors.items() %}
+        {% for error in errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        {% endfor %}
+        </ul>
+    </div>
+{% else %}
+{% with errors = get_flashed_messages(category_filter=["error"]) %}
+{% if errors %}
+    <div class="alert alert-warning alert-autohide fade-in" id="error-messages">
+        <button class="alert-close" type="button" data-target="#error-messages">
+            <span class="sr-only">close alert</span>
+            <span aria-hidden="true">×</span>
+        </button>
+        <ul>
+        {% for error in errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+{% endwith %}
+{% with messages = get_flashed_messages(category_filter=["success"]) %}
+{% if messages %}
+    <div class="alert alert-success alert-autohide fade-in" id="success-messages">
+        <button class="alert-close" type="button" data-target="#success-messages">
+            <span class="sr-only">close alert</span>
+            <span aria-hidden="true">×</span>
+        </button>
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+{% endwith %}
+{% endif %}
+</div>
+<template id="alert-template">
+    <div class="alert alert-autohide fade-in">
+        <button class="alert-close" type="button">
+            <span class="sr-only">close alert</span>
+            <span aria-hidden="true">×</span>
+        </button>
+        <ul class="alert-messages"></ul>
+    </div>
+</template>
+<script>
+// todo: use js modules
+(function() {
+  function doAlerts() {
+    document.querySelectorAll('.alert-autohide').forEach((el) => {
+      setTimeout(() => {
+        el.classList.add('fade-out-start');
+      }, 5000);
+      setTimeout(() => {
+        el.remove();
+      }, 7000);
+    });
+
+    document.querySelectorAll('.fade-in').forEach((el) => {
+      el.classList.add('fade-in-start');
+    });
+
+    document.querySelectorAll('.alert-close').forEach((el) => {
+      el.addEventListener('click', (event) => {
+        const target = document.querySelector(el.dataset.target);
+        if (target) {
+          target.classList.add('fade-out-start');
+          setTimeout(() => {
+            target.remove();
+          }, 2000);
+        }
+      });
+    });
+  }
+
+  window.addEventListener('load', () => {
+    doAlerts();
+  });
+
+  let alertCounter = 0;
+  window.pushAlert = (message, category) => {
+    const id = `alert-${Date.now()}-${alertCounter++}`;
+    const alertContainer = document.querySelector('#alerts');
+    const alertTemplate = document.querySelector('#alert-template');
+    const alertClone = alertTemplate.content.cloneNode(true);
+
+    const alertRoot = alertClone.querySelector('.alert');
+    alertRoot.setAttribute('id', id);
+    alertRoot.classList.add(`alert-${category}`);
+
+    const alertCloseButton = alertClone.querySelector('.alert-close');
+    alertCloseButton.setAttribute('data-target', `#${id}`);
+
+    const alertMessages = alertClone.querySelector('.alert-messages');
+    const alertMessage = document.createElement('li');
+    alertMessage.textContent = message;
+    alertMessages.appendChild(alertMessage);
+    alertContainer.appendChild(alertClone);
+
+    setTimeout(() => doAlerts());
+  }
+})();
+</script>

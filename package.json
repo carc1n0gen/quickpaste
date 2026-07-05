@@ -1,34 +1,14 @@
 {
   "name": "quickpaste",
-  "version": "1.0.0",
-  "description": "Quickpaste ==========",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "development": "mix",
-    "watch": "mix watch",
-    "watch-poll": "mix watch -- --watch-options-poll=1000",
-    "hot": "mix watch --hot",
-    "production": "mix --production"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/carc1n0gen/quickpaste.git"
-  },
-  "author": "",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/carc1n0gen/quickpaste/issues"
+  "author": "Carson Evans",
+  "scripts": {
+    "build": "tailwindcss -i ./src/styles/main.css -o ./src/quickpaste/static/styles.css --minify",
+    "watch": "tailwindcss -i ./src/styles/main.css -o ./src/quickpaste/static/styles.css --watch"
   },
-  "homepage": "https://github.com/carc1n0gen/quickpaste#readme",
-  "devDependencies": {
-    "@tailwindcss/forms": "^0.5.0",
-    "autoprefixer": "^10.4.4",
-    "cross-env": "^6.0.0",
-    "laravel-mix": "^6.0.43",
-    "postcss": "^8.4.12",
-    "tailwindcss": "^3.0.23"
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.1",
+    "@tailwindcss/forms": "^0.5.11",
+    "tailwindcss": "^4.3.1"
   }
 }
