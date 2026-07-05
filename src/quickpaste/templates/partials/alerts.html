@@ -1,59 +1,62 @@
+<div id="alerts">
 {% if form is defined and form.errors %}
-<div class="alert alert-warning alert-dismissable alert-autohide alert-toast fade-in" id="error-messages">
-    <button class="alert-close" type="button" data-target="#error-messages">
-        <span class="sr-only">close alert</span>
-        <span aria-hidden="true">&times;</span>
-    </button>
-    <ul>
+    <div class="alert alert-warning alert-autohide fade-in" id="error-messages">
+        <button class="alert-close" type="button" data-target="#error-messages">
+            <span class="sr-only">close alert</span>
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <ul>
         {% for field, errors in form.errors.items() %}
         {% for error in errors %}
-        <li>{{ error }}</li>
+            <li>{{ error }}</li>
         {% endfor %}
         {% endfor %}
-    </ul>
-</div>
+        </ul>
+    </div>
 {% else %}
 {% with errors = get_flashed_messages(category_filter=["error"]) %}
-    {% if errors %}
-    <div class="alert alert-warning alert-dismissable alert-autohide alert-toast fade-in" id="error-messages">
+{% if errors %}
+    <div class="alert alert-warning alert-autohide fade-in" id="error-messages">
         <button class="alert-close" type="button" data-target="#error-messages">
             <span class="sr-only">close alert</span>
             <span aria-hidden="true">×</span>
         </button>
         <ul>
-            {% for error in errors %}
+        {% for error in errors %}
             <li>{{ error }}</li>
-            {% endfor %}
+        {% endfor %}
         </ul>
     </div>
-    {% endif %}
+{% endif %}
 {% endwith %}
 {% with messages = get_flashed_messages(category_filter=["success"]) %}
-    {% if messages %}
-    <div class="alert alert-success alert-dismissable alert-autohide alert-toast fade-in" id="success-messages">
+{% if messages %}
+    <div class="alert alert-success alert-autohide fade-in" id="success-messages">
         <button class="alert-close" type="button" data-target="#success-messages">
             <span class="sr-only">close alert</span>
             <span aria-hidden="true">×</span>
         </button>
         <ul>
-            {% for message in messages %}
+        {% for message in messages %}
             <li>{{ message }}</li>
-            {% endfor %}
+        {% endfor %}
         </ul>
     </div>
-    {% endif %}
+{% endif %}
 {% endwith %}
 {% endif %}
+</div>
 <template id="alert-template">
-    <div class="alert alert-dismissable alert-autohide alert-toast fade-in" id="alert-messages">
-        <button class="alert-close" type="button" data-target="#alert-messages">
+    <div class="alert alert-autohide fade-in">
+        <button class="alert-close" type="button">
             <span class="sr-only">close alert</span>
             <span aria-hidden="true">×</span>
         </button>
-        <ul id="alert-list"></ul>
+        <ul class="alert-messages"></ul>
     </div>
 </template>
 <script>
+// todo: use js modules
 (function() {
   function doAlerts() {
     document.querySelectorAll('.alert-autohide').forEach((el) => {
@@ -86,18 +89,25 @@
     doAlerts();
   });
 
-  window.pushAlert = (message, category) =>{
-    const alertTemplate = document.getElementById('alert-template');
+  let alertCounter = 0;
+  window.pushAlert = (message, category) => {
+    const id = `alert-${Date.now()}-${alertCounter++}`;
+    const alertContainer = document.querySelector('#alerts');
+    const alertTemplate = document.querySelector('#alert-template');
     const alertClone = alertTemplate.content.cloneNode(true);
 
-    const alertRoot = alertClone.getElementById('alert-messages');
+    const alertRoot = alertClone.querySelector('.alert');
+    alertRoot.setAttribute('id', id);
     alertRoot.classList.add(`alert-${category}`);
 
-    const alertList = alertClone.querySelector('#alert-list');
+    const alertCloseButton = alertClone.querySelector('.alert-close');
+    alertCloseButton.setAttribute('data-target', `#${id}`);
+
+    const alertMessages = alertClone.querySelector('.alert-messages');
     const alertMessage = document.createElement('li');
     alertMessage.textContent = message;
-    alertList.appendChild(alertMessage);
-    document.body.appendChild(alertClone);
+    alertMessages.appendChild(alertMessage);
+    alertContainer.appendChild(alertClone);
 
     setTimeout(() => doAlerts());
   }
